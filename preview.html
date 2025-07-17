@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bangalore Premier Properties - Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        /* Property Types */
+        .search-section {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .search-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .search-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2c3e50;
+        }
+
+        .property-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .property-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* Search Form */
+        .search-form {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .search-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group select {
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Featured Properties */
+        .featured-section {
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2c3e50;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .property-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .property-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .property-info {
+            padding: 1.5rem;
+        }
+
+        .property-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #3498db;
+            margin: 0.5rem 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-stats { flex-direction: column; gap: 1rem; }
+            .search-grid { grid-template-columns: 1fr; }
+            .properties-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">Bangalore Premier Properties</div>
+            <button class="contact-btn">+91 98765 43210</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Find Your Dream Home in Bangalore</h1>
+            <p>Your trusted real estate channel partner connecting you with premium properties from top developers across Bangalore.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span>Properties</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span>Developers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1000+</span>
+                    <span>Happy Families</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-title">
+            <h2>What Are You Looking For?</h2>
+        </div>
+
+        <!-- Property Types -->
+        <div class="property-types">
+            <div class="property-card">
+                <div class="property-icon">🏢</div>
+                <h3>Apartments</h3>
+                <p>Modern apartments with world-class amenities in prime locations</p>
+            </div>
+            <div class="property-card">
+                <div class="property-icon">🏡</div>
+                <h3>Villas</h3>
+                <p>Luxury independent villas with private gardens and premium finishes</p>
+            </div>
+            <div class="property-card">
+                <div class="property-icon">🗾</div>
+                <h3>Plots</h3>
+                <p>DTCP approved plots in developing areas with excellent connectivity</p>
+            </div>
+        </div>
+
+        <!-- Search Form -->
+        <div class="search-form">
+            <div class="search-grid">
+                <div class="form-group">
+                    <select>
+                        <option>📍 All Locations</option>
+                        <option>Whitefield</option>
+                        <option>Electronic City</option>
+                        <option>Sarjapur Road</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select>
+                        <option>🏗️ All Developers</option>
+                        <option>Prestige Group</option>
+                        <option>Brigade Group</option>
+                        <option>Sobha Limited</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select>
+                        <option>🏘️ All Projects</option>
+                        <option>Prestige High Fields</option>
+                        <option>Brigade Cornerstone</option>
+                        <option>Sobha Royal Pavilion</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select>
+                        <option>💰 Budget Range</option>
+                        <option>₹50L - ₹1Cr</option>
+                        <option>₹1Cr - ₹2Cr</option>
+                        <option>₹2Cr - ₹3Cr</option>
+                    </select>
+                </div>
+            </div>
+            <button class="search-btn">🔍 Search Properties</button>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section class="featured-section">
+        <div class="section-title">
+            <h2>Featured Properties</h2>
+            <p>Handpicked premium properties from trusted developers</p>
+        </div>
+        
+        <div class="properties-grid">
+            <div class="property-item">
+                <div class="property-image">Apartments Preview</div>
+                <div class="property-info">
+                    <h3>Prestige High Fields</h3>
+                    <div>📍 Nanakramguda, Hyderabad</div>
+                    <div class="property-price">₹1.2 - 2.8 Cr</div>
+                    <div>🏠 2-4 BHK | 📐 1200-2800 sq.ft</div>
+                </div>
+            </div>
+            
+            <div class="property-item">
+                <div class="property-image">Apartments Preview</div>
+                <div class="property-info">
+                    <h3>Brigade Cornerstone Utopia</h3>
+                    <div>📍 Varthur, Bangalore</div>
+                    <div class="property-price">₹85 L - 1.5 Cr</div>
+                    <div>🏠 1-3 BHK | 📐 650-1580 sq.ft</div>
+                </div>
+            </div>
+            
+            <div class="property-item">
+                <div class="property-image">Villas Preview</div>
+                <div class="property-info">
+                    <h3>Sobha Royal Pavilion</h3>
+                    <div>📍 Sarjapur Road, Bangalore</div>
+                    <div class="property-price">₹2.5 - 4.2 Cr</div>
+                    <div>🏠 3-4 BHK | 📐 2200-3500 sq.ft</div>
+                </div>
+            </div>
+            
+            <div class="property-item">
+                <div class="property-image">Apartments Preview</div>
+                <div class="property-info">
+                    <h3>Godrej Park Retreat</h3>
+                    <div>📍 Sarjapur, Bangalore</div>
+                    <div class="property-price">₹1.8 - 3.2 Cr</div>
+                    <div>🏠 2-3 BHK | 📐 1100-1850 sq.ft</div>
+                </div>
+            </div>
+            
+            <div class="property-item">
+                <div class="property-image">Plots Preview</div>
+                <div class="property-info">
+                    <h3>Premium Plots Electronic City</h3>
+                    <div>📍 Electronic City, Bangalore</div>
+                    <div class="property-price">₹45 L - 1.2 Cr</div>
+                    <div>🏠 N/A | 📐 1200-3000 sq.ft</div>
+                </div>
+            </div>
+            
+            <div class="property-item">
+                <div class="property-image">Villas Preview</div>
+                <div class="property-info">
+                    <h3>Luxury Villas Whitefield</h3>
+                    <div>📍 Whitefield, Bangalore</div>
+                    <div class="property-price">₹3.5 - 6.8 Cr</div>
+                    <div>🏠 4-5 BHK | 📐 3000-5500 sq.ft</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div>
+            <h3>Bangalore Premier Properties</h3>
+            <p>Your trusted real estate channel partner in Bangalore</p>
+            <p>📞 +91 98765 43210 | ✉️ info@bangalorepremier.com</p>
+            <p>&copy; 2024 Bangalore Premier Properties. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
